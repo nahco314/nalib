@@ -1,27 +1,32 @@
+import base64
 import shutil
 import zipfile
 import os
 
 
 def one_filanize(path, name):
-    shutil.make_archive('./local_zip', 'zip', root_dir=path)
+    shutil.make_archive('./local_xz', 'xztar', root_dir=path)
 
-    with open('./local_zip.zip', 'rb') as f1:
+    with open('./local_xz.tar.xz', 'rb') as f1:
         res = f"""
-import zipfile
+import shutil
 import os
 import sys
+import base64
 
 
 if sys.argv[-1] == "ONLINE_JUDGE" or os.getcwd() != "/imojudge/sandbox":
-    with open("./zip.zip", "bw") as f:
-        f.write({f1.read()})
-    
-    with zipfile.ZipFile('./zip.zip') as existing_zip:
-        existing_zip.extractall('./{name}')
+    os.makedirs("{name}", exist_ok=True)
+    os.chdir("{name}")
+
+    with open("xz.tar.xz", "bw") as f:
+        f.write(base64.b85decode("{base64.b85encode(f1.read()).decode()}"))
+
+    shutil.unpack_archive("xz.tar.xz")
+    os.chdir("../")
         """
 
-    os.remove("local_zip.zip")
+    os.remove("local_xz.tar.xz")
 
     return res
 
