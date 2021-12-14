@@ -3,7 +3,7 @@ class UnionFind:
         self.n = n
         self.parents = [-1] * n
 
-    def union(self, x, y):
+    def unite(self, x, y):
         x, y = self.find(x), self.find(y)
         if x != y:
             if self.parents[x] > self.parents[y]:
