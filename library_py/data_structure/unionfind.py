@@ -10,6 +10,9 @@ class UnionFind:
                 x, y = y, x
             self.parents[x] += self.parents[y]
             self.parents[y] = x
+            return True
+
+        return False
 
     def find(self, x):
         y = x
