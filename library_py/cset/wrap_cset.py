@@ -514,7 +514,7 @@ if sys.argv[-1] == "ONLINE_JUDGE" or os.getcwd() != "/imojudge/sandbox":
             f.write(dedent(f"""\
             import sys
             sys.stderr.write(\"\"\"{er}\"\"\")
-            exit(1))
+            exit(1)
             """))
         raise e
 
