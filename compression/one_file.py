@@ -32,7 +32,5 @@ if sys.argv[-1] == "ONLINE_JUDGE" or os.getcwd() != "/imojudge/sandbox":
 
 
 if __name__ == '__main__':
-    os.remove("res.txt")
-
     with open("res.txt", "w") as f:
-        print(one_filanize("lib_path", "lib_name"), file=f)
+        print(one_filanize("/home/nahco314/.pyenv/versions/pypy3.6-7.3.0/include", "include"), file=f)
