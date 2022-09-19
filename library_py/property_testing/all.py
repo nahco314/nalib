@@ -7,9 +7,9 @@ def probably_sorted(a, epsilon=0.01):
         return True
 
     for i in range(int(epsilon ** -1) + 1):
-        element = random.choice(a)
-        index = bisect.bisect_left(a, element)
-        if index >= len(a) or a[index] != element:
+        index = random.randrange(len(a))
+        bisect_index = bisect.bisect_left(a, a[index])
+        if bisect_index >= len(a) or bisect_index != index:
             return False
 
     return True
