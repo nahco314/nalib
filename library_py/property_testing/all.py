@@ -1,4 +1,3 @@
-import bisect
 import random
 
 
@@ -8,7 +7,14 @@ def probably_sorted(a, epsilon=0.01):
 
     for i in range(int(epsilon ** -1) + 1):
         index = random.randrange(len(a))
-        bisect_index = bisect.bisect_left(a, a[index])
+        lo, hi = 0, len(a)
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if a[mid] + mid < a[index] + index:
+                lo = mid + 1
+            else:
+                hi = mid
+        bisect_index = lo
         if bisect_index >= len(a) or bisect_index != index:
             return False
 
